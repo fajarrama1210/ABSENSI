@@ -3,23 +3,54 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function User(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function level(): BelongsTo
+    {
+        return $this->belongsTo(Level::class, 'level_id');
+    }
+    public function major(): BelongsTo
+    {
+        return $this->belongsTo(Major::class, 'major_id');
+    }    public function Presences(): HasMany
+    {
+        return $this->hasMany(Presence::class);
+    }
+
+    public function Permission(): BelongsTo
+    {
+        return $this->belongsTo(Permission::class);
+    }
+
+    public function Dispen(): HasMany
+    {
+        return $this->hasMany(  Dispen::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        'id',
     ];
 
     /**

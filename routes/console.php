@@ -1,8 +1,8 @@
-<?php
-
-use Illuminate\Foundation\Inspiring;
+<?
+use App\Console\Commands\MarkAbsenceAsAlpa;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+Schedule::dailyAt('07:31', function () {
+    Artisan::call(MarkAbsenceAsAlpa::class);
+});

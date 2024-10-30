@@ -16,23 +16,36 @@
         href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
-</head>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div>
-    <!-- Preloader -->
-    <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div>
 
     @yield('content')
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: {!! json_encode(session('success')) !!},
+                });
+            });
+        </script>
+        @if (session('error'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: {!! json_encode(session('error')) !!},
+                    });
+                });
+            </script>
+        @endif
+    @endif
 
     @yield('script')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--  Import Js Files -->
     <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
@@ -44,7 +57,6 @@
     <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
     <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 
-    <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
 </body>
 
 </html>
