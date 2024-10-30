@@ -152,9 +152,12 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="6">No data available</td>
-                                </tr>
+                            <tr>
+                                <td colspan="6" class="text-center" style="min-height: 100px; vertical-align: middle;">
+                                    <img src="{{ asset('assets/dist/images/noData.png') }}" alt="No Data" style="max-height: 100px;" class="d-block mx-auto mb-2">
+                                    <h3>Data Kosong</h3>
+                                </td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>

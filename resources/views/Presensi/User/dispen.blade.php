@@ -82,6 +82,11 @@
                         </div>
                     </div>
                 @empty
+                    <div class="text-center"
+                        style="min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <img src="{{ asset('assets/dist/images/noData.png') }}" alt="No Data" style="max-height: 100px;">
+                        <h3 class="mt-2">Data Kosong</h3>
+                    </div>
                 @endforelse
             </div>
         </div>
