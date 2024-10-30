@@ -40,10 +40,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/absen-siswa', [PresenceController::class, 'index'])->name('absences');
         Route::get('/Dispen', [DispenController::class, 'index'])->name('dispen');
         Route::get('/detail-user/{id}', [DispenController::class, 'detailUser'])->name('detailUser');
-        Route::get('dispen/create', [DispenController::class, 'create'])->name('dispenCreate');
+
+        // Route::get('dispen/create', [DispenController::class, 'create'])->name('dispenCreate');
         Route::post('/dispen/Store', [DispenController::class, 'store'])->name('dispenStore');
         Route::post('/absen-datang', [PresenceController::class, 'absenceComes'])->name('absenceComes');
         Route::post('/absen-pulang', [PresenceController::class, 'absenceGoes'])->name('absenceGoes');
         Route::get('/daftar-user', [UserController::class, 'listUser'])->name('listUser');
     });
 });
+Route::get('izin/create/create', [DispenController::class, 'create'])->name('cobaCreate');

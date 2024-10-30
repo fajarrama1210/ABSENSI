@@ -85,7 +85,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <button type="button" class="btn btn-primary fs-2 fw-semibold lh-sm"
-                                                data-bs-toggle="modal" data-bs-target="#detailData">
+                                                data-bs-toggle="modal" data-bs-target="#detailData-{{ $dispen->id }}">
                                                 Detail
                                             </button>
                                         </div>
@@ -126,6 +126,52 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="detailData-{{ $dispen->id }}"  tabindex="-1" role="dialog" aria-labelledby="d  etailModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="detailModalLabel">Detail Izin</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center mb-3">
+                                                    <img id="detail-image" src="{{ asset('storage/proofs/' . $dispen->proof) }}" alt="Detail Gambar"
+                                                        class="img-fluid" style="max-height: 200px;" />
+                                                </div>
+                                                <div class="container-fluid">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item" style="font-weight: bold;">Nama :
+                                                            {{ $dispen->user ? $dispen->user->name : 'User tidak ditemukan' }} <span id="detail-name"
+                                                                style="font-weight: normal;"></span></li>
+                                                        <li class="list-group-item" style="font-weight: bold;">Tanggal: {{ $dispen->date }} <span
+                                                                id="detail-date" style="font-weight: normal;"></span></li>
+                                                        <li class="list-group-item" style="font-weight: bold;">Keterangan :
+                                                            {{ $dispen->permissionStatus }} <span id="detail-description"
+                                                                style="font-weight: normal;"></span></li>
+                                                        <li class="list-group-item" style="font-weight: bold;">Status :
+                                                            <span
+                                                                class="badge bg-light-{{ $dispen->status == 'pending' ? 'primary' : ($dispen->status == 'approved' ? 'success' : 'danger') }} rounded-3 py-2 text-{{ $dispen->status == 'pending' ? 'primary' : ($dispen->status == 'approved' ? 'success' : 'danger') }} fw-semibold fs-1">
+                                                                @if ($dispen->status == 'pending')
+                                                                    Menunggu
+                                                                @elseif($dispen->status == 'approved')
+                                                                    Disetujui
+                                                                @else
+                                                                    Ditolak
+                                                                @endif
+                                                            </span>
+                                                        </li>
+
+                                                        <li class="list-group-item" style="font-weight: bold;">Keterangan Izin : {{ $dispen->reason }}
+                                                            <span id="detail-permission_description" style="font-weight: normal;"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center">Tidak ada data tersedia</td>
@@ -138,50 +184,4 @@
         </div>
     </div>
 
-    <div class="modal fade" id="detailData" tabindex="-1" role="dialog" aria-labelledby="d  etailModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel">Detail Izin</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center mb-3">
-                        <img id="detail-image" src="{{ asset('storage/proofs/' . $dispen->proof) }}" alt="Detail Gambar"
-                            class="img-fluid" style="max-height: 200px;" />
-                    </div>
-                    <div class="container-fluid">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" style="font-weight: bold;">Nama :
-                                {{ $dispen->user ? $dispen->user->name : 'User tidak ditemukan' }} <span id="detail-name"
-                                    style="font-weight: normal;"></span></li>
-                            <li class="list-group-item" style="font-weight: bold;">Tanggal: {{ $dispen->date }} <span
-                                    id="detail-date" style="font-weight: normal;"></span></li>
-                            <li class="list-group-item" style="font-weight: bold;">Keterangan :
-                                {{ $dispen->permissionStatus }} <span id="detail-description"
-                                    style="font-weight: normal;"></span></li>
-                            <li class="list-group-item" style="font-weight: bold;">Status :
-                                <span
-                                    class="badge bg-light-{{ $dispen->status == 'pending' ? 'primary' : ($dispen->status == 'approved' ? 'success' : 'danger') }} rounded-3 py-2 text-{{ $dispen->status == 'pending' ? 'primary' : ($dispen->status == 'approved' ? 'success' : 'danger') }} fw-semibold fs-1">
-                                    @if ($dispen->status == 'pending')
-                                        Menunggu
-                                    @elseif($dispen->status == 'approved')
-                                        Disetujui
-                                    @else
-                                        Ditolak
-                                    @endif
-                                </span>
-                            </li>
-
-                            <li class="list-group-item" style="font-weight: bold;">Keterangan Izin : {{ $dispen->reason }}
-                                <span id="detail-permission_description" style="font-weight: normal;"></span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

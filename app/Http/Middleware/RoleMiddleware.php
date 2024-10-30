@@ -16,8 +16,9 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (!Auth::user() || !Auth::user()->hasRole($role)) {
-            return redirect()->back()->with('error', 'Anda Tidak Memiliki Akses Untuk Kehalaman Tersebut');
+        if (Auth::check() && Auth::user()->role === 'user') {
+                dd(true);
+            return $next($request);
         }
         return $next($request);
     }

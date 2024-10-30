@@ -248,7 +248,7 @@
                     });
                 </script>
             @endif
-
+         {{-- {{  auth()->user()->roles->pluck('name')[0] }} --}}
             @if (session('success'))
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {

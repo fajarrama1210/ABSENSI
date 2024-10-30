@@ -25,7 +25,7 @@
         </div>
         <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row">
             <li class="nav-item ms-auto">
-                <a href="{{ route('dispenCreate') }}" class="btn btn-primary d-flex align-items-center px-3" id="add-notes">
+                <a href="izin/create/create" class="btn btn-primary d-flex align-items-center px-3" id="add-notes">
                     <i class="ti ti-file me-0 me-md-1 fs-4"></i>
                     <span class="d-none d-md-block font-weight-medium fs-3">Izin</span>
                 </a>

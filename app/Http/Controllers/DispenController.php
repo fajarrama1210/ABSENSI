@@ -21,8 +21,10 @@ class DispenController extends Controller
     public function indexAdmin()
     {
         $dispens = Dispen::with('user')->get();
+
         return view('Presensi.Admin.dispen', compact('dispens'));
     }
+
 
     public function detailUser($id)
     {
@@ -35,6 +37,7 @@ class DispenController extends Controller
      */
     public function create()
     {
+        // dd('true');
         return view('Presensi.User.dispenTambah');
     }
 
@@ -55,7 +58,7 @@ class DispenController extends Controller
             'proof' => $fileName,
             'permissionStatus' => $request->permissionStatus,
         ]);
-        
+
         return redirect()->route('dispen')->with('success', 'Dispensasi berhasil dibuat.');
     }
 
@@ -83,7 +86,9 @@ class DispenController extends Controller
     public function show($id)
     {
         $dispen = Dispen::findOrFail($id);
+        dd($dispen);
         return view('Presensi.admin.dispen', compact('dispen'));
+
     }
 
     /**
