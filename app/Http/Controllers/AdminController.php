@@ -20,17 +20,28 @@ class AdminController extends Controller
         $majors = Major::count();
         $users = User::count();
         $levels = Level::count();
-        
+
         return view('Presensi.admin.dashboard', compact('majors', 'users', 'levels'));
     }
     public function countPresencesByStatus()
     {
         $statusCounts = Presence::select('status', DB::raw('count(*) as total'))
-        ->groupBy('status')
-        ->get();
-        dd($statusCounts);
-    
-        return $statusCounts;
+            ->groupBy('status')
+            ->get();
+
+        // Format ulang data agar menjadi array dengan jumlah total berdasarkan status
+        $formattedData = [
+            'hadir' => 0,
+            'izin' => 0,
+            'alpha' => 0,
+        ];
+
+        foreach ($statusCounts as $statusCount) {
+            $formattedData[$statusCount->status] = $statusCount->total;
+        }
+
+        // Mengembalikan hanya angka-angka dalam urutan [hadir, izin, alpha]
+        return response()->json(array_values($formattedData));
     }
     /**
      * Show the form for creating a new resource.
@@ -68,9 +79,9 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    // Implementasi logika update menggunakan $request dan $id
-}
+    {
+        // Implementasi logika update menggunakan $request dan $id
+    }
 
 
     /**
