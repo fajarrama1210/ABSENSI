@@ -6,7 +6,9 @@ use App\Models\cr;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Major;
+use App\Models\Presence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -18,9 +20,18 @@ class AdminController extends Controller
         $majors = Major::count();
         $users = User::count();
         $levels = Level::count();
+        
         return view('Presensi.admin.dashboard', compact('majors', 'users', 'levels'));
     }
-
+    public function countPresencesByStatus()
+    {
+        $statusCounts = Presence::select('status', DB::raw('count(*) as total'))
+        ->groupBy('status')
+        ->get();
+        dd($statusCounts);
+    
+        return $statusCounts;
+    }
     /**
      * Show the form for creating a new resource.
      */

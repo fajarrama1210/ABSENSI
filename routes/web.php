@@ -48,4 +48,5 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/daftar-user', [UserController::class, 'listUser'])->name('listUser');
     });
 });
+Route::get('data',[AdminController::class, 'countPresencesByStatus'])->name('data');
 Route::get('izin/create/create', [DispenController::class, 'create'])->name('cobaCreate');
