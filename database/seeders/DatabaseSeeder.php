@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         //     'level_id' => $level->id,
         //     'major_id' => $major->id,
         // ]);
+
+        $this->call(RolePermissionSeeder::class);
     }
 
 }
