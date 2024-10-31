@@ -115,7 +115,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <div class="col-lg-4 d-flex align-items-stretch">
+                    {{-- <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="mb-3">
@@ -123,16 +123,16 @@
                                         Pagination
                                     </h5>
                                 </div>
-                                {{-- <nav aria-label="...">
+                                <nav aria-label="...">
                                     <ul class="pagination">
                                         <li class="page-item">
                                             <a class="page-link" href="#">{{$levels->links()}}</a>
                                         </li>
                                     </ul>
-                                </nav> --}}
+                                </nav>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

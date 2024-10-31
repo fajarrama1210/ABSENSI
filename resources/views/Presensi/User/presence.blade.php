@@ -52,33 +52,27 @@
         $currentTime = \Carbon\Carbon::now()->format('H:i:s');
     @endphp
 
-    @if ($currentTime >= '05:00:00' && $currentTime <= '09:00:00')
+@if ($currentTime >= '05:00:00' && $currentTime <= '11:00:00')
     <div class="d-flex justify-content-center">
         <form id="absenceComesForm" action="{{ route('absenceComes') }}" method="POST">
             @csrf
-            <input type="hidden" name="latitude" id="latitude">
-            <input type="hidden" name="longitude" id="longitude">
-            <button type="button" class="btn btn-primary btn-lg px-5 py-3 fs-4"
-                onclick="getLocationAndSubmit('absenceComesForm')">
+            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fs-4">
                 Absen datang
             </button>
         </form>
     </div>
-    @endif
+@endif
 
-    @if ($currentTime >= '14:45:00' && $currentTime <= '15:30:00')
-        <div class="d-flex justify-content-center mt-3">
-            <form id="absenceGoesForm" action="{{ route('absenceGoes') }}" method="POST">
-                @csrf
-                <input type="hidden" name="latitude" id="latitude">
-                <input type="hidden" name="longitude" id="longitude">
-                <button type="button" class="btn btn-secondary btn-lg px-5 py-3 fs-4"
-                    onclick="getLocationAndSubmit('absenceGoesForm')">
-                    Absen pulang
-                </button>
-            </form>
-        </div>
-    @endif
+@if ($currentTime >= '14:45:00' && $currentTime <= '15:30:00')
+    <div class="d-flex justify-content-center mt-3">
+        <form id="absenceGoesForm" action="{{ route('absenceGoes') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-secondary btn-lg px-5 py-3 fs-4">
+                Absen pulang
+            </button>
+        </form>
+    </div>
+@endif
 
     <div class="container-fluid">
         <div class="card w-100 position-relative overflow-hidden">

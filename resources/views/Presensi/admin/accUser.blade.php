@@ -51,9 +51,9 @@
                                 <th>
                                     <h6 class="fs-4 fw-semibold mb-0">Status</h6>
                                 </th>
-                                <th>
+                                {{-- <th>
                                     <h6 class="fs-4 fw-semibold mb-0">Detail</h6>
-                                </th>
+                                </th> --}}
                                 <th>
                                     <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
                                 </th>
@@ -79,11 +79,11 @@
                                             {{ ucfirst($user->status) }}
                                         </span>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0 fw-normal">Detail</p>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <div class="dropdown dropstart">
                                             <a href="#" class="text-muted" id="dropdownMenuButton"

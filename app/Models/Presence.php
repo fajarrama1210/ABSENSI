@@ -14,7 +14,7 @@ class Presence extends Model
     protected $guarded = ['id'];
 
 
-
+        
     /**
      * Get the User that owns the Presence
      *

@@ -13,7 +13,7 @@ class LevelController extends Controller
      */
     public function index()
     {
-        $levels = Level::paginate(5);
+        $levels = Level::all();
         return view('Presensi.admin.kelas', compact('levels'));
     }
 
@@ -43,7 +43,7 @@ class LevelController extends Controller
     public function show(string $id)
     {
         //
-    }   
+    }
 
     /**
      * Show the form for editing the specified resource.

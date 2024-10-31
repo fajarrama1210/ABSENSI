@@ -30,7 +30,7 @@ class PresenceController extends Controller
             ->get();
         return view('Presensi.Admin.presence', compact('presences'));
     }
-    
+
     public function absenceComes(PresenceRequest $request)
     {
         $user = Auth::user();
@@ -46,7 +46,7 @@ class PresenceController extends Controller
             return redirect()->back()->with('error', 'Anda sudah alpa hari ini.');
         }
 
-        if ($currentTime > '07:00:00' && $currentTime <= '09:30:00') {
+        if ($currentTime > '11:00:00' && $currentTime <= '11:30:00') {
             Presence::updateOrCreate(
                 ['user_id' => $user->id, 'date' => $today],
                 ['level_id' => $user->level_id, 'major_id' => $user->major_id, 'time_comes' => $currentTime, 'status' => 'terlambat']
@@ -55,7 +55,7 @@ class PresenceController extends Controller
         }
 
         // Validasi waktu absen datang
-        if ($currentTime < '05:30:00' || $currentTime > '09:30:00') {
+        if ($currentTime < '05:30:00' || $currentTime > '10:10:00') {
             return redirect()->back()->with('error', 'Absen datang hanya bisa dilakukan antara pukul 05:30 dan 07:30.');
         }
 

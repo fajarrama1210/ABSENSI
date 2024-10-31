@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cr;
+use App\Models\Dispen;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Major;
@@ -20,8 +21,15 @@ class AdminController extends Controller
         $majors = Major::count();
         $users = User::count();
         $levels = Level::count();
+        $dispens = Dispen ::count();
+        $presences = Presence::where('status', 'hadir')->count();
+        $mostFrequentStatus = Presence::select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->orderBy('total', 'desc')
+            ->first();
 
-        return view('Presensi.admin.dashboard', compact('majors', 'users', 'levels'));
+        $presencesUsers = Presence::where('status', $mostFrequentStatus->status)->get();
+        return view('Presensi.admin.dashboard', compact('majors', 'users', 'levels', 'presences', 'presencesUsers', 'dispens'));
     }
     public function countPresencesByStatus()
     {
@@ -29,18 +37,16 @@ class AdminController extends Controller
             ->groupBy('status')
             ->get();
 
-        // Format ulang data agar menjadi array dengan jumlah total berdasarkan status
         $formattedData = [
             'hadir' => 0,
             'izin' => 0,
             'alpha' => 0,
+            'terlambat' => 0,
         ];
 
         foreach ($statusCounts as $statusCount) {
             $formattedData[$statusCount->status] = $statusCount->total;
         }
-
-        // Mengembalikan hanya angka-angka dalam urutan [hadir, izin, alpha]
         return response()->json(array_values($formattedData));
     }
     /**

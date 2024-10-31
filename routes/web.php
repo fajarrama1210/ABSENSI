@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/DispenApprove/{dispen}', [DispenController::class, 'approve'])->name('dispeApprove');
         Route::get('/DispenReject/{dispen}', [DispenController::class, 'reject'])->name('dispenReject');
         Route::delete('/DispenHapus/{dispen}', [DispenController::class, 'destroy'])->name('dispenDestroy');
-        Route::get('/Konfirmasi-User', [UserController::class, 'confirm'])->name('confirmUser');
+        Route::get('/Konfirmasi-User', [UserController::class, 'conf        irm'])->name('confirmUser');
         Route::get('/user/approve/{id}', [UserController::class, 'approve'])->name('userApprove');
         Route::get('/user/reject/{id}', [UserController::class, 'reject'])->name('userReject');
         Route::delete('/user/destroy/{id}', [UserController::class, 'destroy'])->name('userDestroy');

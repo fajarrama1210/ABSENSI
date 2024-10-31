@@ -94,8 +94,12 @@
                                             class="badge bg-light-success text-success fw-semibold fs-6">{{ \Carbon\Carbon::parse($presence->time_comes)->format('H:i') }}</span>
                                     </td>
                                     <td>
+                                        @if ($presence->time_leaves)
                                         <span
                                             class="badge bg-light-primary text-primary fw-semibold fs-6">{{ \Carbon\Carbon::parse($presence->time_leaves)->format('H:i') }}</span>
+                                    @else
+                                        <span class="text-muted"></span>
+                                    @endif
                                     </td>
                                     <td>
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $presence->Major->major }}</h6>
